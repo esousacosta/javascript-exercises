@@ -16,29 +16,19 @@ const caesar = function(iUncodedString, iShift) {
         // Upper cases wrapping
         if (aUncodedStringArray[i].charCodeAt(0) >= 65 && aUncodedStringArray[i].charCodeAt(0) <= 90)
         {
-            aUncodedStringArray[i] = String.fromCharCode(((aUncodedStringArray[i].charCodeAt(0) + iShift) % 91) - 26 +
-                Math.min(Math.floor((aUncodedStringArray[i].charCodeAt(0) + iShift) / 91), 1) * 65);
+            aUncodedStringArray[i] = String.fromCharCode((((iShift % 26) + (aUncodedStringArray[i].charCodeAt(0) - 65)) % 26) + 65);
             while (aUncodedStringArray[i].charCodeAt(0) < 65)
             {
-                aUncodedStringArray[i] = String.fromCharCode(90 - 65 + (aUncodedStringArray[i].charCodeAt(0) + 1));
-            }
-            while (aUncodedStringArray[i].charCodeAt(0) > 90)
-            {
-                aUncodedStringArray[i] = String.fromCharCode(aUncodedStringArray[i].charCodeAt(0) - 90 - 1 + 65);
+                aUncodedStringArray[i] = String.fromCharCode(26 + aUncodedStringArray[i].charCodeAt(0));
             }
         }
         // Lower case wrapping
         else if (aUncodedStringArray[i].charCodeAt(0) >= 97 && aUncodedStringArray[i].charCodeAt(0) <= 122)
         {
-            aUncodedStringArray[i] = String.fromCharCode(((aUncodedStringArray[i].charCodeAt(0) + iShift) % 123) - 26 +
-                Math.min(Math.floor((aUncodedStringArray[i].charCodeAt(0) + iShift) / 123), 1) * 97);
+            aUncodedStringArray[i] = String.fromCharCode((((iShift % 26) + (aUncodedStringArray[i].charCodeAt(0) - 97)) % 26) + 97);
             while (aUncodedStringArray[i].charCodeAt(0) < 97)
             {
-                aUncodedStringArray[i] = String.fromCharCode(122 - 97 + (aUncodedStringArray[i].charCodeAt(0) + 1));
-            }
-            while (aUncodedStringArray[i].charCodeAt(0) > 122)
-            {
-                aUncodedStringArray[i] = String.fromCharCode(aUncodedStringArray[i].charCodeAt(0) - 122 - 1 + 97);
+                aUncodedStringArray[i] = String.fromCharCode(26 + aUncodedStringArray[i].charCodeAt(0));
             }
         }
     }
